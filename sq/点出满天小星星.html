@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html onclick="newStar(event)" lang="en-US" >
+<head>
+	<meta charset="UTF-8"/>
+	<title></title>
+	<style>
+		*{margin:0;padding:0;}
+	</style>
+	<script>
+		/*  案例：点出满天小星星：每点一下，就“创建出一个img对象”
+		需求描述：
+		1、网页一打开，整个网页就变成黑色背景，代表晚上
+		2、在网页中的任何位置点击，就会出现一颗星星
+		3、该星星的大小（宽高）在15-100之间随机变化
+		*/
+		function init()
+		{
+			var obj=document.body; //代表网页中的那个body标签对象
+			obj.bgColor="red";
+		}
+		//特别注意，这里没有括号，也没有引号,只是一个函数名
+		window.onload=init;
+		function newStar(evt)
+		{
+		//没有的东西（对象）其实也可以通过程序来创建并放入网页中
+			var newobj=document.createElement("img");//创建了一个img对象
+			//此时的newobj只是一个完全没有实际图片显示的“内存存在”
+			newobj.src="xx.jpg";
+			
+			var x=evt.clientX;
+			var y=evt.clienty;
+			newobj.style.position="absolute";
+			newobj.style.left=x+"px";
+			newobj.style.top=y+"px";
+			var w=Math.floor(Math.random()*(100-15+1))+15;
+			//不能这样写，会变形，宽高随机，但比例要一致
+			//var h=Math.floor(Math.random()*(100-15+1))+15;
+			newobj.width=w;
+			newobj.height=w;
+			//将该新的对对象(图)放入网页
+			var obj=document.body;
+			obj.appendChild(newobj);//将newobj放入obj对象内部
+			
+		}
+	</script>
+</head>
+	
+<body id="d1"> <!-- onload="init()" -->
+</body>
+
+</html>
